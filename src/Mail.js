@@ -14,10 +14,12 @@ import UnfoldMoreIcon from '@material-ui/icons/UnfoldMore';
 import PrintIcon from '@material-ui/icons/Print';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useHistory } from 'react-router';
+import { selectOpenMail } from './features/mailSlice';
+import { useSelector } from 'react-redux';
 
 function Mail() {
 	const history = useHistory();
-
+	const selectedMail = useSelector(selectOpenMail);
 	return (
 		<div className="mail">
 			<div className="mail_tools">
@@ -64,19 +66,14 @@ function Mail() {
 			</div>
 			<div className="mail_body">
 				<div className="mail_bodyHeader">
-					<h2>Subject</h2>
+					<h2>{selectedMail?.title}</h2>
 					<LabelImportantIcon className="mail_important" />
-					<p>Title</p>
-					<p>10pm</p>
+					<p>{selectedMail?.subject}</p>
+					<p>{selectedMail?.time}</p>
 				</div>
 				<div className="mail_message">
 					<p>
-						This is a message In publishing and graphic design, Lorem ipsum is a placeholder text commonly
-						used to demonstrate the visual form of a document or a typeface without relying on meaningful
-						content. Lorem ipsum may be used as a placeholder before final copy is available. It is also
-						used to temporarily replace text in a process called greeking, which allows designers to
-						consider the form of a webpage or publication, without the meaning of the text influencing the
-						design.
+					{selectedMail?.description}
 					</p>
 				</div>
 			</div>
